@@ -1,12 +1,11 @@
-var sortBy = require('lodash/collection/sortBy');
+import sortBy from 'lodash/collection/sortBy';
+import {users} from './users';
+import {User} from './User';
 
-var users = [
-    {name: 'Zack', age: 45},
-    {name: 'Robby', age: 19},
-    {name: 'Alice', age: 67},
-    {name: 'Carl', age: 32}
-];
-
-var byName = sortBy(users, 'name');
-
-console.log(byName);
+sortBy(users, 'name')
+    .map(function(user) {
+        return new User(user.name, user.age);
+    })
+    .forEach(function(user) {
+        console.log(user.display);
+    });
